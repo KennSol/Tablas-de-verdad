@@ -16,14 +16,14 @@ def disyuncion_excluyente (p,q):
 
 def tabla(conector,nombre):
     print(f"Tabla de verdad para {nombre}:")
-    print("p | q | Resultado")
-    print("--+---+------------")
+    print("| p | q | Resultado")
+    print("--+---+--------------")
     time.sleep(0.5)
     for p in [False, True]:
         for q in [False, True]:
             resultado = conector(p,q)
-            print(f"{int(p)} | {int(q)} |     {int(resultado)}")
-            print("--+---+------------")  # Espacio entre tablas
+            print(f"| {int(p)} | {int(q)} |     {int(resultado)}")
+            print("----+---+------------")  # Espacio entre tablas
             time.sleep(1)
 
 def menu ():
@@ -59,6 +59,15 @@ while True:
             nombre="Disyuncion Excluyente"
             tabla(disyuncion_excluyente,nombre)
         case 6:
+            print("Saliendo en")
+            time.sleep(1)
+            print("3...")
+            time.sleep(1)
+            print("2...")
+            time.sleep(1)
+            print("1...")
+            time.sleep(1)
+            print("Adios")
             break
         case _:
             print("!NO VALIDO, VUELVA A INGRESAR LA OPCION! ")
