@@ -4,14 +4,14 @@ def conjunción (p,q):
 def disyuncion (p,q):
     return p or q
 
-def condicional (a,b):
-    return (not a) or b
+def condicional (p,q):
+    return (not p) or q
 
-def bicondicional (a,b):
-    return a == b
+def bicondicional (p,q):
+    return p == q
 
-def disyuncion_excluyente (a,b):
-    None
+def disyuncion_excluyente (p,q):
+    return not(p==q)
 
 def tabla(conector,nombre):
     print(f"Tabla de verdad para {nombre}:")
@@ -48,10 +48,13 @@ while True:
             tabla(disyuncion,nombre)
         case 3:
             nombre="Condicional"
+            tabla(condicional,nombre)
         case 4:
             nombre="Bicondicional"
+            tabla(bicondicional,nombre)
         case 5:
             nombre="Distuncion Excluyente"
+            tabla(disyuncion_excluyente,nombre)
         case 6:
             break
         case _:
