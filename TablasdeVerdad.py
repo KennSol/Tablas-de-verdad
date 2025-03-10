@@ -1,5 +1,5 @@
 import time
-def conjunción_ (*var):
+def conjunción (*var):
     return all(var)
 
 def disyuncion (*var):
@@ -26,15 +26,15 @@ def disyuncion_excluyente (p,q,r=None):
 def tabla(conector,nombre,c):
     print(f"Tabla de verdad para {nombre}:")
     if c==1:
-        print(f"| p | {nombre}")
+        print(f"| p |    {nombre}")
         print("--+--------------")
         time.sleep(0.5)
     elif c==2:
-        print(f"| p | q | {nombre}")
+        print(f"| p | q |     {nombre}")
         print("--+---+--------------")
         time.sleep(0.5)
     elif c==3:
-        print(f"| p | q | r | {nombre}")
+        print(f"| p | q | r |   {nombre}")
         print("--+---+---+----------")
     for p in [False, True]:
         if c==1:
@@ -47,7 +47,7 @@ def tabla(conector,nombre,c):
                     print("----+---+------------")
                     time.sleep(1)
                 else:
-                    for c in [False, True]:
+                    for r in [False, True]:
                         resultado = conector(p, q, r)
                         print(f"{int(p)} | {int(q)} | {int(r)} | {int(resultado)}")
                         print("--+---+---+----------")
@@ -89,15 +89,57 @@ while True:
                     case 1:
                         if c==1:
                             nombre="p^p"
-                            tabla(conjunción_,nombre,1)
+                            tabla(conjunción,nombre,1)
                         elif c==2:
                             nombre="p^q"
-                            tabla(conjunción_,nombre,2)
+                            tabla(conjunción,nombre,2)
                         else:
                             nombre="(p^q)^r"
-                            tabla(conjunción_,nombre,3)
+                            tabla(conjunción,nombre,3)
+                    case 2:
+                        if c==1:
+                            nombre="pvp"
+                            tabla(disyuncion,nombre,1)
+                        elif c==2:
+                            nombre="pvq"
+                            tabla(disyuncion,nombre,2)
+                        else:
+                            nombre="(pvq)vr"
+                            tabla(disyuncion,nombre,3)
+                    case 3:
+                        if c==1:
+                            nombre="p→p"
+                            tabla(condicional,nombre,1)
+                        elif c==2:
+                            nombre="p→q"
+                            tabla(condicional,nombre,2)
+                        else:
+                            nombre="(p→q)→r"
+                            tabla(condicional,nombre,3)
+                    case 4:
+                        if c==1:
+                            nombre="p↔p"
+                            tabla(bicondicional,nombre,1)
+                        elif c==2:
+                            nombre="p↔q"
+                            tabla(bicondicional,nombre,2)
+                        else:
+                            nombre="(p↔q)↔r"
+                            tabla(bicondicional,nombre,3)
+                    case 5:
+                        if c==1:
+                            nombre="p⊻p"
+                            tabla(disyuncion_excluyente,nombre,1)
+                        elif c==2:
+                            nombre="p⊻q"
+                            tabla(disyuncion_excluyente,nombre,2)
+                        else:
+                            nombre="(p⊻q)⊻r"
+                            tabla(disyuncion_excluyente,nombre,3)
+                    case _:
+                        print("!NO VALIDO!")
         case 2:
-            if c < 1:
+            if c < 3:
                 variable=input("Ingrese la Variable: ")
                 c=c+1
             elif c > 3:
