@@ -73,7 +73,7 @@ def menu2 ():
 op=0
 variable=""
 nombre=""
-c=2
+c=0
 while True:
     menu()
     op=int(input("Opcion: "))
