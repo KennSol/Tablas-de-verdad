@@ -14,28 +14,41 @@ def bicondicional (p,q):
 def disyuncion_excluyente (p,q):
     return not(p==q)
 
-def tabla(conector,nombre):
+def tabla(conector,nombre,c):
     print(f"Tabla de verdad para {nombre}:")
-    print("| p | q | Resultado")
-    print("--+---+--------------")
-    time.sleep(0.5)
+    if c==1:
+        None
+    elif c==2:
+        print(f"| p | q | {nombre}")
+        print("--+---+--------------")
+        time.sleep(0.5)
+    elif c==3:
+        print(f"| p | q | r | {nombre}")
+        print("--+---+---+----------")
     for p in [False, True]:
-        for q in [False, True]:
-            resultado = conector(p,q)
-            print(f"| {int(p)} | {int(q)} |     {int(resultado)}")
-            print("----+---+------------")  # Espacio entre tablas
-            time.sleep(1)
+        if c==1:
+            None
+        else:
+            for q in [False, True]:
+                if c==2:
+                    resultado = conector(p,q)
+                    print(f"| {int(p)} | {int(q)} |     {int(resultado)}")
+                    print("----+---+------------")  # Espacio entre tablas
+                    time.sleep(1)
+                else:
+                    for c in [False, True]:
+                        resultado = conector(p, q, r)
+                        print(f"{int(p)} | {int(q)} | {int(r)} | {int(resultado)}")
+                        time.sleep(1)
+
 
 def menu ():
     print("*Tablas de Verdad*")
     time.sleep(0.5)
-    print("""***Opciones: 
-    1. Conjuncion
-    2. Disyuncion
-    3. Condicional
-    4. Bicondicional
-    5. Disyuncion Excluyente
-    6. Salir""")
+    print("""***Menu de Opciones*** 
+    1. Generar Tablas de Verdad
+    2. Ingresar variables
+    3. Salir""")
 
 op=0
 nombre=""
@@ -50,15 +63,6 @@ while True:
             nombre="Disyuncion"
             tabla(disyuncion,nombre)
         case 3:
-            nombre="Condicional"
-            tabla(condicional,nombre)
-        case 4:
-            nombre="Bicondicional"
-            tabla(bicondicional,nombre)
-        case 5:
-            nombre="Disyuncion Excluyente"
-            tabla(disyuncion_excluyente,nombre)
-        case 6:
             print("Saliendo en")
             time.sleep(1)
             print("3...")
