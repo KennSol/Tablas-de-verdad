@@ -18,6 +18,7 @@ def tabla(conector,nombre):
     print(f"Tabla de verdad para {nombre}:")
     print("p | q | Resultado")
     print("--+---+------------")
+    time.sleep(0.5)
     for p in [False, True]:
         for q in [False, True]:
             resultado = conector(p,q)
@@ -25,9 +26,9 @@ def tabla(conector,nombre):
             print("--+---+------------")  # Espacio entre tablas
             time.sleep(1)
 
-
 def menu ():
     print("*Tablas de Verdad*")
+    time.sleep(0.5)
     print("""***Opciones: 
     1. Conjuncion
     2. Disyuncion
@@ -37,7 +38,7 @@ def menu ():
     6. Salir""")
 
 op=0
-nombre=None
+nombre=""
 while True:
     menu()
     op=int(input("Opcion: "))
