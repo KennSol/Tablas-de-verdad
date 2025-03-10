@@ -15,13 +15,13 @@ def disyuncion_excluyente (a,b):
 
 def tabla(conector,nombre):
     print(f"Tabla de verdad para {nombre}:")
-    print("A | B | Resultado")
-    print("--+---+----------")
+    print("p | q | Resultado")
+    print("--+---+------------")
     for p in [False, True]:
         for q in [False, True]:
             resultado = conector(p,q)
-            print(f"{int(p)} | {int(q)} | {int(resultado)}")
-            print("--+---+----------")  # Espacio entre tablas
+            print(f"{int(p)} | {int(q)} |     {int(resultado)}")
+            print("--+---+------------")  # Espacio entre tablas
 
 
 def menu ():
@@ -38,7 +38,7 @@ op=0
 nombre=None
 while True:
     menu()
-    input(print("Opcion: "))
+    op=int(input("Opcion: "))
     match op:
         case 1:
             nombre="Conjuncion"
