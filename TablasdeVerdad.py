@@ -18,7 +18,7 @@ def bicondicional(p,q,r=None):
         return p == q == r  
 
 def disyuncion_excluyente (p,q,r=None):
-    if c is None:
+    if r is None:
         return p != q  
     else:
         return (p + q + r) % 2 != 0
