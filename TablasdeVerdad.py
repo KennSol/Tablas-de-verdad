@@ -1,3 +1,4 @@
+import time
 def conjunción (p,q):
     return p and q
 
@@ -22,17 +23,18 @@ def tabla(conector,nombre):
             resultado = conector(p,q)
             print(f"{int(p)} | {int(q)} |     {int(resultado)}")
             print("--+---+------------")  # Espacio entre tablas
+            time.sleep(1)
 
 
 def menu ():
     print("*Tablas de Verdad*")
-    print("Opciones: "
-    "1. Conjuncion"
-    "2. Disyuncion"
-    "3. Condicional"
-    "4. Bicondicional"
-    "5. Distuncion Excluyente"
-    "6. Salir")
+    print("""***Opciones: 
+    1. Conjuncion
+    2. Disyuncion
+    3. Condicional
+    4. Bicondicional
+    5. Disyuncion Excluyente
+    6. Salir""")
 
 op=0
 nombre=None
@@ -53,7 +55,7 @@ while True:
             nombre="Bicondicional"
             tabla(bicondicional,nombre)
         case 5:
-            nombre="Distuncion Excluyente"
+            nombre="Disyuncion Excluyente"
             tabla(disyuncion_excluyente,nombre)
         case 6:
             break
