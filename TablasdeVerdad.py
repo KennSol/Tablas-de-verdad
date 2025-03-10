@@ -1,23 +1,34 @@
 import time
-def conjunción (p,q):
-    return p and q
+def conjunción_ (*var):
+    return all(var)
 
-def disyuncion (p,q):
-    return p or q
+def disyuncion (*var):
+    return any(var)
 
-def condicional (p,q):
-    return (not p) or q
+def condicional(p,q,r=None):
+    if r is None:
+        return (not p) or q  
+    else:
+        return (not (p and not q)) or r
 
-def bicondicional (p,q):
-    return p == q
+def bicondicional(p,q,r=None):
+    if r is None:
+        return p == q 
+    else:
+        return p == q == r  
 
-def disyuncion_excluyente (p,q):
-    return not(p==q)
+def disyuncion_excluyente (p,q,r=None):
+    if r is None:
+        return not(p==q)
+    else:
+        return not(p == q == r)
 
 def tabla(conector,nombre,c):
     print(f"Tabla de verdad para {nombre}:")
     if c==1:
-        None
+        print(f"| p | {nombre}")
+        print("--+--------------")
+        time.sleep(0.5)
     elif c==2:
         print(f"| p | q | {nombre}")
         print("--+---+--------------")
@@ -33,12 +44,13 @@ def tabla(conector,nombre,c):
                 if c==2:
                     resultado = conector(p,q)
                     print(f"| {int(p)} | {int(q)} |     {int(resultado)}")
-                    print("----+---+------------")  # Espacio entre tablas
+                    print("----+---+------------")
                     time.sleep(1)
                 else:
                     for c in [False, True]:
                         resultado = conector(p, q, r)
                         print(f"{int(p)} | {int(q)} | {int(r)} | {int(resultado)}")
+                        print("--+---+---+----------")
                         time.sleep(1)
 
 
@@ -50,18 +62,46 @@ def menu ():
     2. Ingresar variables
     3. Salir""")
 
+def menu2 ():
+    print("*Tablas de Verdad*")
+    time.sleep(0.5)
+    print("""**Expresiones Logicas**
+    1. Conjuncion
+    2. Disyuncion
+    3. Condicional
+    4. Bicondicional
+    5. Disyuncion Excluyente""")
 op=0
+variable=""
 nombre=""
+c=0
 while True:
     menu()
     op=int(input("Opcion: "))
     match op:
         case 1:
-            nombre="Conjuncion"
-            tabla(conjunción,nombre)
+            if c < 1:
+                print("!NO HA INGRESADO VARIABLES!")
+            else:
+                menu2()
+                op=int(input("Expresion a Ingresar: "))
+                match op:
+                    case 1:
+                        if c==1:
+                            nombre="p^p"
+                            tabla(conjunción_,nombre,1)
+                        elif c==2:
+                            nombre="p^q"
+                            tabla(conjunción_,nombre,2)
+                        else:
+                            nombre="(p^q)^r"
+                            tabla(conjunción_,nombre,3)
         case 2:
-            nombre="Disyuncion"
-            tabla(disyuncion,nombre)
+            if c < 1:
+                variable=input("Ingrese la Variable: ")
+                c=c+1
+            elif c > 3:
+                print("!MAXIMO DE VARIABLES ALCANZADO!")
         case 3:
             print("Saliendo en")
             time.sleep(1)
